@@ -29,6 +29,9 @@ jobs:
       with:
         name: build
         path: build
+    - name: Print Build Directory
+      run: ls -R /home/runner/work/build-test-app/build-test-app/build
+
 
   check-sizes:
     runs-on: ubuntu-latest

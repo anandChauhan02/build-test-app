@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
 
 const checkFileSize = (filePath, maxSize) => {
     try {
@@ -20,17 +19,25 @@ const checkFileSizes = () => {
     const buildPath = path.resolve(__dirname, '../build/static');
 
     // Get the filenames dynamically
-    const jsFilename = fs.readdirSync(buildPath + '/js').find((file) => file.endsWith('.js'));
-    const cssFilename = fs.readdirSync(buildPath + '/css').find((file) => file.endsWith('.css'));
-
-    if (!jsFilename || !cssFilename) {
-        console.error('Error: Could not find JS or CSS files in the build directory.');
-        process.exit(1);
-    }
+    const jsPath = path.join(buildPath, 'js');
+    const cssPath = path.join(buildPath, 'css');
 
     try {
-        checkFileSize(path.join(buildPath, 'js', jsFilename), 300 * 1024); // Adjust the size limit accordingly
-        checkFileSize(path.join(buildPath, 'css', cssFilename), 300 * 1024); // Adjust the size limit accordingly
+        const jsFilenames = fs.readdirSync(jsPath).filter((file) => file.endsWith('.js'));
+        const cssFilenames = fs.readdirSync(cssPath).filter((file) => file.endsWith('.css'));
+
+        if (jsFilenames.length === 0 || cssFilenames.length === 0) {
+            console.error('Error: Could not find JS or CSS files in the build directory.');
+            process.exit(1);
+        }
+
+        jsFilenames.forEach((jsFilename) => {
+            checkFileSize(path.join(jsPath, jsFilename), 300 * 1024); // Adjust the size limit accordingly
+        });
+
+        cssFilenames.forEach((cssFilename) => {
+            checkFileSize(path.join(cssPath, cssFilename), 300 * 1024); // Adjust the size limit accordingly
+        });
     } catch (error) {
         console.error('Error checking file sizes:', error);
         process.exit(1);

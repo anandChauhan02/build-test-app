@@ -28,6 +28,10 @@ jobs:
       with:
         name: build
         path: build
+    - name: Print Build Directory
+      run: - name: Debug Build Directory
+      run: ls -R build
+
 
 
   check-sizes:

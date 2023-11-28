@@ -1,9 +1,11 @@
-const fs = require('fs');
+const fs = require('fs').promises;
 const path = require('path');
 
-const checkFileSize = (filePath, maxSize) => {
+const checkFileSize = async (filePath, maxSize) => {
+    console.log('Checking file size:', filePath);
     try {
-        const fileSize = fs.statSync(filePath).size;
+        const stat = await fs.stat(filePath);
+        const fileSize = stat.size;
         if (fileSize > maxSize) {
             console.error(`File size exceeded limit: ${filePath}`);
             process.exit(1);
@@ -15,29 +17,53 @@ const checkFileSize = (filePath, maxSize) => {
     }
 };
 
-const checkFileSizes = () => {
-    const buildPath = path.resolve(__dirname, '../build/static');
+const buildPath = path.resolve(__dirname, '../build');
 
-    // Get the filenames dynamically
-    const jsPath = path.join(buildPath, 'js');
-    const cssPath = path.join(buildPath, 'css');
+// Wait for the build directory to be created
+const waitForBuildFiles = async () => {
+    let attempt = 0;
+    const maxAttempts = 30; // Adjust the maximum attempts as needed
+
+    while (attempt < maxAttempts) {
+        try {
+            const files = await fs.readdir(buildPath);
+            if (files.length > 0) {
+                console.log('Build directory detected.');
+                return;
+            }
+        } catch (error) {
+            console.log(`Waiting for the build directory... (Attempt ${attempt + 1}/${maxAttempts})`);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            attempt++;
+        }
+    }
+
+    console.error('Timed out waiting for the build directory.');
+    process.exit(1);
+};
+
+const checkFileSizes = async () => {
+    await waitForBuildFiles();
+
+    const jsPath = path.join(buildPath, 'static/js');
+    const cssPath = path.join(buildPath, 'static/css');
 
     try {
-        const jsFilenames = fs.readdirSync(jsPath).filter((file) => file.endsWith('.js'));
-        const cssFilenames = fs.readdirSync(cssPath).filter((file) => file.endsWith('.css'));
+        const jsFilenames = await fs.readdir(jsPath);
+        const cssFilenames = await fs.readdir(cssPath);
 
         if (jsFilenames.length === 0 || cssFilenames.length === 0) {
             console.error('Error: Could not find JS or CSS files in the build directory.');
             process.exit(1);
         }
 
-        jsFilenames.forEach((jsFilename) => {
-            checkFileSize(path.join(jsPath, jsFilename), 300 * 1024); // Adjust the size limit accordingly
-        });
+        for (const jsFilename of jsFilenames) {
+            await checkFileSize(path.join(jsPath, jsFilename), 300 * 1024);
+        }
 
-        cssFilenames.forEach((cssFilename) => {
-            checkFileSize(path.join(cssPath, cssFilename), 300 * 1024); // Adjust the size limit accordingly
-        });
+        for (const cssFilename of cssFilenames) {
+            await checkFileSize(path.join(cssPath, cssFilename), 300 * 1024);
+        }
     } catch (error) {
         console.error('Error checking file sizes:', error);
         process.exit(1);

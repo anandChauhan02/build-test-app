@@ -32,6 +32,6 @@ jobs:
       with:
         name: build
         path: build
-    - name: Run Script to Check File Sizes
+    - name: Check js and css file size
       run: node scripts/checkSizes.js
 

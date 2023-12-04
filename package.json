@@ -16,8 +16,8 @@
     "build": "react-scripts build webpack",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prebuild": "npm run check-sizes",
-    "check-sizes": "node scripts/checkSizes.js"
+    "check-sizes": "node scripts/checkSizes.js",
+    "prebuild": "npm run check-sizes"
   },
   "eslintConfig": {
     "extends": [

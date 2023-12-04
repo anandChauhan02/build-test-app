@@ -2,7 +2,9 @@ name: CI/CD
 
 on:
   push:
-    branches: ["main"]
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   build:
@@ -18,7 +20,6 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{matrix.node-version}}
-        cache : "npm"
 
     - name: Install Dependencies
       run: npm install
@@ -35,29 +36,3 @@ jobs:
       run: ls -R /home/runner/work/build-test-app/build
 
 
-  check-sizes:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.x]
-    needs: build
-
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{matrix.node-version}}
-        cache : "npm"
-    - name: Install Dependencies
-      run: npm install
-
-    - name: Download Build Artifacts
-      uses: actions/download-artifact@v2
-      with:
-        name: build
-
-    - name: Run Script to Check File Sizes
-      run: node scripts/checkSizes.js

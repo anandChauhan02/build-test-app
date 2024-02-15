@@ -1,28 +1,28 @@
 [
-    {
-        "path": "/",
-        "resourceSizes": [
-            {
-                "resourceType": "document",
-                "budget": 18
-            },
-            {
-                "resourceType": "total",
-                "budget": 200
-            }
-        ]
-    },
-    {
-        "path": "/en/training/",
-        "resourceSizes": [
-            {
-                "resourceType": "document",
-                "budget": 20
-            },
-            {
-                "resourceType": "total",
-                "budget": 220
-            }
-        ]
-    }
+  {
+    "path": "/",
+    "resourceSizes": [
+      {
+        "resourceType": "document",
+        "budget": 369
+      },
+      {
+        "resourceType": "total",
+        "budget": 200
+      }
+    ]
+  },
+  {
+    "path": "/en/training/",
+    "resourceSizes": [
+      {
+        "resourceType": "document",
+        "budget": 20
+      },
+      {
+        "resourceType": "total",
+        "budget": 220
+      }
+    ]
+  }
 ]

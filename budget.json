@@ -1,6 +1,6 @@
 [
     {
-        "path": "/*",
+        "path": "/",
         "resourceSizes": [
             {
                 "resourceType": "document",
@@ -9,6 +9,19 @@
             {
                 "resourceType": "total",
                 "budget": 200
+            }
+        ]
+    },
+    {
+        "path": "/en/training/",
+        "resourceSizes": [
+            {
+                "resourceType": "document",
+                "budget": 20
+            },
+            {
+                "resourceType": "total",
+                "budget": 220
             }
         ]
     }

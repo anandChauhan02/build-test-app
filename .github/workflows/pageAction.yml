@@ -11,6 +11,7 @@ jobs:
           urls: |
             https://prep.comptia.org/
             https://prep.comptia.org/en-us/
+            https://prep.comptia.org/en/training/
           budgetPath: ./budget.json
           uploadArtifacts: true
           temporaryPublicStorage: true

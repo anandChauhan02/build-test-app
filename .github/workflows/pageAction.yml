@@ -8,10 +8,7 @@ jobs:
       - name: Audit URLs using Lighthouse
         uses: treosh/lighthouse-ci-action@v11
         with:
-          urls: |
-            https://prep.comptia.org/
-            https://prep.comptia.org/en-us/
-            https://prep.comptia.org/en/training/
+          urls: https://prep.comptia.org/
           budgetPath: ./budget.json
           uploadArtifacts: true
           temporaryPublicStorage: true

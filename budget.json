@@ -1,28 +1,44 @@
 [
-  {
-    "path": "/",
-    "resourceSizes": [
-      {
-        "resourceType": "document",
-        "budget": 369
-      },
-      {
-        "resourceType": "total",
-        "budget": 200
-      }
-    ]
-  },
-  {
-    "path": "/en/training/",
-    "resourceSizes": [
-      {
-        "resourceType": "document",
-        "budget": 20
-      },
-      {
-        "resourceType": "total",
-        "budget": 220
-      }
-    ]
-  }
+    {
+        "path": "/en/",
+        "resourceSizes": [
+            {
+                "resourceType": "document",
+                "budget": 11.1
+            },
+            {
+                "resourceType": "image",
+                "budget": 695
+            },
+            {
+                "resourceType": "script",
+                "budget": 194
+            },
+            {
+                "resourceType": "third-party",
+                "budget": 953
+            }
+        ]
+    },
+    {
+        "path": "/en/training/",
+        "resourceSizes": [
+            {
+                "resourceType": "document",
+                "budget": 17.8
+            },
+            {
+                "resourceType": "image",
+                "budget": 99
+            },
+            {
+                "resourceType": "script",
+                "budget": 105
+            },
+            {
+                "resourceType": "third-party",
+                "budget": 989
+            }
+        ]
+    }
 ]

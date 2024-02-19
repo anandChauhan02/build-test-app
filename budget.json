@@ -4,19 +4,19 @@
         "resourceSizes": [
             {
                 "resourceType": "document",
-                "budget": 11.1
+                "budget": 0
             },
             {
-                "resourceType": "image",
-                "budget": 695
+                "resourceType": "stylesheet",
+                "budget": 0
             },
             {
                 "resourceType": "script",
-                "budget": 194
+                "budget": 0
             },
             {
                 "resourceType": "third-party",
-                "budget": 953
+                "budget": 0
             }
         ]
     },
@@ -25,19 +25,19 @@
         "resourceSizes": [
             {
                 "resourceType": "document",
-                "budget": 17.8
+                "budget": 0
             },
             {
-                "resourceType": "image",
-                "budget": 99
+                "resourceType": "stylesheet",
+                "budget": 0
             },
             {
                 "resourceType": "script",
-                "budget": 105
+                "budget": 0
             },
             {
                 "resourceType": "third-party",
-                "budget": 989
+                "budget": 0
             }
         ]
     }

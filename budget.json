@@ -4,19 +4,19 @@
         "resourceSizes": [
             {
                 "resourceType": "document",
-                "budget": 0
+                "budget": 12.2
             },
             {
                 "resourceType": "stylesheet",
-                "budget": 0
+                "budget": 80.5
             },
             {
                 "resourceType": "script",
-                "budget": 0
+                "budget": 1046.3
             },
             {
                 "resourceType": "third-party",
-                "budget": 0
+                "budget": 2160.3
             }
         ]
     },
@@ -25,19 +25,19 @@
         "resourceSizes": [
             {
                 "resourceType": "document",
-                "budget": 0
+                "budget": 19
             },
             {
                 "resourceType": "stylesheet",
-                "budget": 0
+                "budget": 80.5
             },
             {
                 "resourceType": "script",
-                "budget": 0
+                "budget": 1081.6
             },
             {
                 "resourceType": "third-party",
-                "budget": 0
+                "budget": 1649
             }
         ]
     }

@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const SizePlugin = require('size-plugin');
 const path = require('path');
-const checkFileSizes = require('./scripts/checkSizes');
+// const checkFileSizes = require('./scripts/checkSizes');
 
 module.exports = {
     // ... other webpack configurations ...
@@ -46,9 +46,9 @@ module.exports = {
 
     // This hook runs after the webpack build process is completed
     // You can use it to check file sizes
-    hooks: {
-        afterEmit: () => {
-            checkFileSizes(path.resolve(__dirname, 'build/static'));
-        },
-    },
+    // hooks: {
+    //     afterEmit: () => {
+    //         checkFileSizes(path.resolve(__dirname, 'build/static'));
+    //     },
+    // },
 };

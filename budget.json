@@ -19,5 +19,26 @@
                 "budget": 2160.3
             }
         ]
+    },
+    {
+        "path": "/en/training/",
+        "resourceSizes": [
+            {
+                "resourceType": "document",
+                "budget": 19.3
+            },
+            {
+                "resourceType": "stylesheet",
+                "budget": 80.5
+            },
+            {
+                "resourceType": "script",
+                "budget": 1081.6
+            },
+            {
+                "resourceType": "third-party",
+                "budget": 1649
+            }
+        ]
     }
 ]

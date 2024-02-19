@@ -6,6 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Audit URLs using Lighthouse
+        id: lighthouse_audit
         uses: treosh/lighthouse-ci-action@v11
         with:
           urls: |
@@ -14,3 +15,22 @@ jobs:
           budgetPath: ./budget.json
           uploadArtifacts: true
           temporaryPublicStorage: true
+
+      - name: Check Lighthouse audit status
+        if: ${{ failure() }}
+        run: |
+          # Disable pull request merge option if Lighthouse audit fails
+          # Example: Set a status check context to prevent merges
+          GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} \
+          node -e " \
+            const github = require('@actions/github'); \
+            const octokit = new github.getOctokit(process.env.GITHUB_TOKEN); \
+            const context = github.context; \
+            octokit.repos.createStatus({ \
+              ...context.repo, \
+              sha: context.sha, \
+              state: 'failure', \
+              target_url: 'lighthouse-audit-failed', \
+              description: 'Lighthouse audit failed. Pull request cannot be merged.', \
+              context: 'ci/lighthouse' \
+            });"
